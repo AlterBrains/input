@@ -9,6 +9,7 @@
 
 namespace Joomla\Input;
 
+use Joomla\Filter\InputFilter;
 use Joomla\Filter;
 
 /**
@@ -94,7 +95,7 @@ class Input implements \Countable
     public function __construct($source = null, array $options = [])
     {
         $this->data    = $source ?? $_REQUEST;
-        $this->filter  = $options['filter'] ?? new Filter\InputFilter();
+        $this->filter  = $options['filter'] ?? new InputFilter();
         $this->options = $options;
     }
 
