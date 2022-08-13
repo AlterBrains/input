@@ -117,7 +117,7 @@ class InputTest extends TestCase
 		$instance = $this->getInputObject();
 
 		$this->assertSame($_GET, TestHelper::getValue($instance->get, 'data'));
-		$this->assertArrayHasKey('get', TestHelper::getValue($instance, 'inputs'), 'An object retrieved via __get() should be cached internally');
+		$this->assertArrayHasKey('get', TestHelper::getValue($instance, 'inputs'), 'An object retrieved via \__get() should be cached internally');
 	}
 
 	/**
@@ -448,7 +448,7 @@ class InputTest extends TestCase
 	{
 		$_POST    = ['polluted' => '1'];
 		$_GET     = [];
-		$_REQUEST = array_merge($_GET, $_POST);
+		$_REQUEST = \array_merge($_GET, $_POST);
 
 		$input = new Input($_GET);
 
@@ -466,7 +466,7 @@ class InputTest extends TestCase
 	{
 		$_GET     = ['polluted' => '1'];
 		$_POST    = [];
-		$_REQUEST = array_merge($_GET, $_POST);
+		$_REQUEST = \array_merge($_GET, $_POST);
 
 		$input = new Input($_POST);
 
@@ -484,7 +484,7 @@ class InputTest extends TestCase
 	{
 		$_GET     = ['1' => '1', '2' => '2', '3' => '3'];
 		$_POST    = ['1' => '1', '2' => '2'];
-		$_REQUEST = array_merge($_GET, $_POST);
+		$_REQUEST = \array_merge($_GET, $_POST);
 
 		$input = new Input();
 

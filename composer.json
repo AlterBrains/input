@@ -1,19 +1,49 @@
 {
     "name": "joomla/input",
-    "type": "joomla-package",
     "description": "Joomla Input Package",
-    "keywords": ["joomla", "framework", "input"],
+    "type": "library",
+    "keywords": [
+        "joomla",
+        "framework",
+        "input",
+        "input",
+        "joomla-package"
+    ],
     "homepage": "https://github.com/joomla-framework/input",
+    "readme": "https://github.com/joomla-framework/input/README.md",
     "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "The Joomla! Project",
+            "homepage": "https://framework.joomla.org/"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/joomla-framework/input/issues",
+        "forum": "https://groups.google.com/g/joomla-dev-framework",
+        "wiki": "https://github.com/joomla-framework/input/wiki",
+        "docs": "https://developer.joomla.org/framework/documentation.html",
+        "source": "https://github.com/joomla-framework/input"
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/joomla"
+        },
+        {
+            "type": "custom",
+            "url": "https://community.joomla.org/sponsorship-campaigns.html"
+        }
+    ],
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.2.5|^8.0",
         "joomla/filter": "^1.0|^2.0",
         "symfony/deprecation-contracts": "^2.1"
     },
     "require-dev": {
-        "joomla/coding-standards": "^3.0@dev",
         "joomla/test": "^2.0",
-        "phpunit/phpunit": "^8.5|^9.0"
+        "phpunit/phpunit": "^8.5|^9.0",
+        "squizlabs/php_codesniffer": "^3.4"
     },
     "autoload": {
         "psr-4": {
@@ -26,9 +56,30 @@
         }
     },
     "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "testdox": "vendor/bin/phpunit --testdox",
+        "coverage": "vendor/bin/phpunit --coverage-html build/coverage",
+        "sign": [
+            "drone jsonnet --stream",
+            "drone sign joomla-framework/input --save"
+        ],
+        "style": [
+            "vendor/bin/phpcbf --report=full --extensions=php --standard=PSR12 src/",
+            "vendor/bin/phpcs --report=full --extensions=php --standard=PSR12 src/"
+        ]
+    },
+    "scripts-descriptions": {
+        "test": "Run the PHPUnit tests",
+        "testdox": "Run the PHPUnit tests and output the result in testdox format",
+        "coverage": "Run the PHPUnit tests and write an HTML coverage report to build/coverage",
+        "sign": "Compile .drone.jsonnet and sign the resulting YML file. Make sure to have set DRONE_SERVER and DRONE_TOKEN properly.",
+        "style": "Fix any style issues that can be fixed automatically and run a check afterwards to list issues that could not be solved."
+    },
     "extra": {
         "branch-alias": {
-	        "dev-2.0-dev": "2.0-dev"
+            "dev-2.0-dev": "2.0-dev"
         }
     }
 }

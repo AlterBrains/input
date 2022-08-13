@@ -112,7 +112,7 @@ namespace Joomla\Input;
 
 use Joomla\Input\Tests\CookieDataStore;
 
-if (version_compare(PHP_VERSION, '7.3', '>='))
+if (\version_compare(PHP_VERSION, '7.3', '>='))
 {
 	/**
 	 * Stub.
